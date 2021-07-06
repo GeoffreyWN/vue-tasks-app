@@ -1,7 +1,7 @@
 <template>
   <header>
     <h1>{{ title }}</h1>
-    <Button
+    <Button v-show="homePage"
       @btn-click="$emit('toggle-add-task')"
       :text="showAddTask ? 'Close' : 'Add Task'"
       :color="showAddTask ? 'red' : 'green'"
@@ -20,6 +20,15 @@ export default {
       default: 'Default title: TasksTracker',
     },
     showAddTask: Boolean,
+  },
+  computed: {
+    homePage() {
+      if (this.$route.path === '/') {
+        return true
+      } else {
+        return false
+      }
+    }
   },
   components: { Button },
   emits: ['toggle-add-task'],
